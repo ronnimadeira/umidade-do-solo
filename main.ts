@@ -1,13 +1,3 @@
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    umidade = pins.analogReadPin(AnalogPin.P1)
-    if (umidade >= numero) {
-        basic.showIcon(IconNames.Happy)
-        music.playTone(262, music.beat(BeatFraction.Whole))
-    } else {
-        basic.showIcon(IconNames.Sad)
-        music.playTone(698, music.beat(BeatFraction.Whole))
-    }
-})
 input.onButtonPressed(Button.A, function () {
     if (numero > 100) {
         numero += -100
@@ -32,4 +22,14 @@ input.onButtonPressed(Button.B, function () {
 })
 let umidade = 0
 let numero = 0
-numero = 0
+numero = 900
+basic.forever(function () {
+    umidade = pins.analogReadPin(AnalogPin.P1)
+    if (umidade >= numero) {
+        basic.showIcon(IconNames.Happy)
+        music.playTone(262, music.beat(BeatFraction.Whole))
+    } else {
+        basic.showIcon(IconNames.Sad)
+        music.playTone(698, music.beat(BeatFraction.Whole))
+    }
+})
